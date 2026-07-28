@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Disease Reports</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="dashboard">
+
+<h1>📄 Disease Detection Reports</h1>
+<p>View your crop disease analysis history</p>
+
+
+<div class="table-box">
+
+<div class="search-box">
+
+<input type="text" id="searchInput"
+placeholder="🔍 Search Disease..."
+onkeyup="searchTable()">
+
+<select id="diseaseFilter" onchange="searchTable()">
+    <option value="">All Diseases</option>
+    <option>Apple Black Rot</option>
+    <option>Peach Bacterial Spot</option>
+    <option>Strawberry Leaf Scorch</option>
+    <option>Squash Powdery Mildew</option>
+</select>
+
+</div>
+
+<table class="report-table">
+
+<tr>
+    <th>ID</th>
+    <th>Disease</th>
+    <th>Confidence</th>
+    <th>Treatment</th>
+    <th>Date</th>
+    <th>Action</th>
+</tr>
+
+
+{% for r in reports %}
+
+<tr>
+    <td>{{r[0]}}</td>
+    <td>🌱 {{r[2]}}</td>
+    <td>📊 {{r[3]}}</td>
+    <td>💊 {{r[4]}}</td>
+    <td>📅 {{r[6]}}</td>
+    <td>
+      <a href="/view_report/{{r[0]}}"
+       class="view-icon">
+         👁️
+      </a>
+    </td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+
+<br>
+
+<a href="/download_report" class="btn">
+    📄 Download PDF Report
+</a>
+<a href="/dashboard" class="btn">⬅ Back to Dashboard</a>
+
+
+</div>
+
+<script>
+function searchTable(){
+
+    let input = document.getElementById("searchInput").value.toLowerCase();
+    let filter = document.getElementById("diseaseFilter").value.toLowerCase();
+
+    let table = document.querySelector(".report-table");
+    let rows = table.getElementsByTagName("tr");
+
+    for(let i = 1; i < rows.length; i++){
+
+        let disease = rows[i].cells[1].innerText.trim().toLocaleLowerCase();
+
+        let matchSearch = disease.includes(input);
+
+        let matchDisease = 
+            filter == "" || 
+            filter == "all diseases" || 
+            disease.includes(filter);
+
+        if(matchSearch && matchDisease){
+            rows[i].style.display = "";
+        }
+        else{
+            rows[i].style.display = "none";
+        }
+    }
+}
+</script>
+</body>
+</html>

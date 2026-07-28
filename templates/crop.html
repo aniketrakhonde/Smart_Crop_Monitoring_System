@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Monitoring</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="login-box">
+
+    <h1>🌾 Crop Monitoring</h1>
+
+    <form action="/crop" method="POST" enctype="multipart/form-data">
+
+        <input type="text" name="crop" placeholder="Crop Name" required>
+
+        <input type="date" name="date" required>
+
+        <input type="text" name="soil" placeholder="Soil Type" required>
+
+        <input type="text" name="location" placeholder="Location" required>
+
+        <label style="color:white;">📷 Upload Crop Image</label><br><br>
+
+        <input type="file" name="image" accept="image/*" required><br><br>
+        <img id="preview" width="250" style="display:none; margin:20px auto; border-radius:10px;">
+
+        <button type="submit">Save Crop Information</button>
+        {% if success %}
+<p class="success">
+    {{ success }}
+</p>
+{% endif %}
+
+    </form>
+   
+    <br>
+
+    <a href="/dashboard">⬅ Back to Dashboard</a>
+
+</div>
+ <hr>
+
+<center>
+    <h2>Saved Crop Information</h2>
+</center>
+
+<table border="1" class="crop-table">
+    <tr>
+        <th>Crop</th>
+        <th>Date</th>
+        <th>Soil</th>
+        <th>Location</th>
+    </tr>
+
+    {% for crop in crops %}
+    <tr>
+        <td>{{ crop[1] }}</td>
+        <td>{{ crop[2] }}</td>
+        <td>{{ crop[3] }}</td>
+        <td>{{ crop[4] }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+
+<script>
+const fileInput = document.querySelector('input[type="file"]');
+const preview = document.getElementById("preview");
+
+fileInput.onchange = function () {
+    const file = this.files[0];
+    if (file) {
+        preview.src = URL.createObjectURL(file);
+        preview.style.display = "block";
+    }
+}
+</script>
+</body>
+</html>

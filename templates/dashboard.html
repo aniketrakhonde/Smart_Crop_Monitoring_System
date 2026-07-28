@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Crop Health Monitoring and Treatment System</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<div id="profileBox" class="profile-box">
+    <h3>{{ name }}</h3>
+    <p>Email: {{ email }}</p>
+    <p>Mobile: {{ mobile }}</p>
+</div>
+
+<div class="dashboard">
+    <div class="profile-container">
+
+        <div class="profile-icon" onclick="toggleProfile()">
+    <img src="{{ url_for('static', filename='images/profile.png') }}">
+</div>
+
+    <div class="profile-menu" id="profileMenu">
+        <h3>{{ name }}</h3>
+        <p>📧 {{ email }}</p>
+        <p>📱 {{ mobile }}</p>
+        <p>🟢 Online</p>
+    </div>
+</div>
+
+    <div class="top-section">
+        <h1>🌾 Smart Crop Health Monitoring and Treatment System</h1>
+        <h2>Welcome {{name}} 👋</h2>
+        <p>Monitor Crop Health, Detect Diseases, and get Treatment Recommendations.</p>
+    </div>
+
+
+    <div class="info-cards">
+
+        <div class="info-card">
+            
+            <h3>🌤️Weather</h3>
+            <p>Temperature:{{ temperature }}°C</p>
+            <p>Condition:{{ condition }}</p>
+            <p>Humidity:{{ humidity }}%</p>
+            <span>Wind Speed:{{ wind }}m/s</span>
+        </div>
+
+
+        <div class="info-card">
+            🌱
+            <h3>Crop Status</h3>
+            <p>Healthy Crops</p>
+            <p>Monitoring Active</p>
+        </div>
+
+
+        <div class="info-card">
+            🤖
+            <h3>AI Detection</h3>
+            <p>Disease Detection Ready</p>
+        </div>
+
+    </div>
+
+
+    <h2 class="title">Features</h2>
+
+
+    <div class="dashboard-cards">
+
+        <a href="/crop" class="card">
+            🌾
+            <h3>Crop Monitoring</h3>
+        </a>
+
+
+        <a href="/disease" class="card">
+            🦠
+            <h3>Disease Detection</h3>
+        </a>
+
+
+        <a href="/treatment" class="card">
+            💊
+            <h3>Treatment</h3>
+        </a>
+
+
+        <a href="/report" class="card">
+            📄
+            <h3>Reports</h3>
+        </a>
+
+    </div>
+
+
+    <br>
+
+    <a href="/logout" class="btn">🚪 Logout</a>
+
+
+</div>
+<script>
+function toggleProfile() {
+    var menu = document.getElementById("profileMenu");
+
+    if (menu.style.display === "block") {
+        menu.style.display = "none";
+    } else {
+        menu.style.display = "block";
+    }
+}
+</script>
+<script>
+function showProfile(){
+    var box = document.getElementById("profileBox");
+
+    if(box.style.display === "block"){
+        box.style.display = "none";
+    }
+    else{
+        box.style.display = "block";
+    }
+}
+</script>
+</body>
+</html>

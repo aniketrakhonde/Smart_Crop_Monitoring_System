@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Treatment Recommendation</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="dashboard">
+
+<h1>💊 Treatment Recommendation</h1>
+
+<p>Recommended treatments for all detected crop diseases</p>
+
+<input type="text"
+       id="searchInput"
+       onkeyup="searchTreatment()"
+       placeholder="🔍 Search Disease...">
+
+<div class="table-box">
+
+<table id="treatmentTable" class="report-table">
+
+<tr>
+    <th>Disease</th>
+    <th>Recommended Treatment</th>
+    <th>medicines</th>
+    <th>fertilizers</th>
+    
+</tr>
+
+{% for disease, treatment in treatments.items() %}
+
+<tr>
+    <td>{{ disease }}</td>
+    <td>{{ treatment }}</td>
+    <td>{{ medicines[disease] }}</td>
+    <td>{{ fertilizers[disease] }}</td>
+
+</tr>
+
+{% endfor %}
+</table>
+
+</div>
+
+<br>
+
+<a href="/dashboard" class="btn">⬅ Back to Dashboard</a>
+
+</div>
+
+<br>
+
+<a href="/dashboard">Back to Dashboard</a>
+
+<script>
+function searchTreatment() {
+
+    let input = document.getElementById("searchInput").value.toLowerCase();
+
+    let table = document.getElementById("treatmentTable");
+    let rows = table.getElementsByTagName("tr");
+
+    for (let i = 1; i < rows.length; i++) {
+
+        let disease = rows[i].cells[0].innerText.toLowerCase();
+
+        if (disease.includes(input)) {
+            rows[i].style.display = "";
+        } else {
+            rows[i].style.display = "none";
+        }
+    }
+}
+</script>
+
+</body>
+</html>
