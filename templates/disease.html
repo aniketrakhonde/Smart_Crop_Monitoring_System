@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disease Detection</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="login-box">
+
+    <h1>🦠 AI Disease Detection</h1>
+
+    <form action="/disease" method="POST" enctype="multipart/form-data">
+
+        <label style="color:white;">📷 Upload Crop Image</label><br><br>
+
+        <input type="file" name="image" id="image" accept="image/*" required>
+
+        <br><br>
+
+        <img id="preview"
+          class="preview-img"
+          src="#"
+          style="display:none;">
+
+        <br><br>
+
+        <button type="submit">🔍 Detect Disease</button>
+
+    </form>
+
+    <hr>
+
+    <h2>Detection Result</h2>
+
+    <div class="info-card result-card">
+
+       <h3>🌿 Disease</h3>
+<p>{{ disease }}</p>
+
+<h3>📊 Confidence</h3>
+<p>{{ confidence }}</p>
+
+<h3>💊 Treatment</h3>
+<p>{{ treatment }}</p>
+    </div>
+
+    <br>
+
+    <a href="/dashboard" class="btn">⬅ Back to Dashboard</a>
+
+</div>
+
+<script>
+const image=document.getElementById("image");
+const preview=document.getElementById("preview");
+
+image.onchange=function(){
+    const file=this.files[0];
+
+    if(file){
+        preview.src=URL.createObjectURL(file);
+        preview.style.display="block";
+    }
+}
+</script>
+
+</body>
+</html>

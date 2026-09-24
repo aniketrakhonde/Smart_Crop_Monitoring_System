@@ -1,0 +1,8 @@
+flask
+tensorflow-cpu
+numpy
+pillow
+opencv-python-headless
+gunicorn
+requests
+reportlab

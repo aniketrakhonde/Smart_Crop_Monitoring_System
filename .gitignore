@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+farmers.db
+dataset/
+test_image.jpg

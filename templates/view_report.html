@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Report</title>
+<style>
+body{
+    margin:0;
+    padding:0;
+    font-family:Arial,sans-serif;
+    background:linear-gradient(135deg,#e8f5e9,#c8e6c9);
+}
+
+.card{
+    width:650px;
+    margin:40px auto;
+    background:#fff;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,.2);
+    text-align:center;
+}
+
+h1{
+    color:#2e7d32;
+    margin-bottom:25px;
+}
+
+img{
+    width:280px;
+    height:280px;
+    object-fit:cover;
+    border-radius:15px;
+    border:4px solid #4CAF50;
+    margin-bottom:20px;
+}
+
+.info{
+    width:90%;
+    margin:auto;
+    margin-top:20px;
+    text-align:left;
+    
+}
+
+.info p{
+    background:#f4f8f4;
+    padding:12px;
+    border-radius:8px;
+     margin:12px;px 0;
+    font-size:18px;
+    line-height:1.6;
+}
+
+.info b{
+    color:#2e7d32;
+}
+
+.btn{
+    display:inline-block;
+    margin-top:25px;
+    background:#4CAF50;
+    color:white;
+    padding:12px 28px;
+    text-decoration:none;
+    border-radius:8px;
+    font-size:17px;
+    transition:.3s;
+}
+
+.btn:hover{
+    background:#2e7d32;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<h1>🌿 Disease Report</h1>
+
+<img src="{{ url_for('static', filename='uploads/' + report[5]) }}">
+
+<div class="info">
+
+<p><b>👨 Farmer:</b> {{ report[1] }}</p>
+
+<p><b>🦠 Disease:</b> {{ report[2] }}</p>
+
+<p><b>📊 Confidence:</b> {{ report[3] }}</p>
+
+<p><b>💊 Treatment:</b> {{ report[4] }}</p>
+
+<p><b>📅 Date:</b> {{ report[6] }}</p>
+
+</div>
+
+<a href="/report" class="btn">⬅ Back</a>
+
+</div>
+
+</body>
+</html>
